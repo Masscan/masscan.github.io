@@ -7,7 +7,7 @@ comments: true
 
 Hey guys today i am sharing my little notes about a insane tool called **chisel**. Chisel, one of the tool i am using mostly while doing HackTheBox.
 
-Thanks to **ippsec** for teaching me about chisel.
+Thanks to **ippsec and mrsh3ll** for teaching me about chisel.
 
 Get chisel from [here](https://github.com/jpillora/chisel).
 
@@ -47,7 +47,9 @@ chisel client 10.14.14.14:8000 R:127.0.0.1:8001:172.18.0.3:80 (Best way)
     
 So now we can do a curl command from our kali box (curl 127.0.0.1:8001) and we can now access website running on 172.18.0.3:80.
 
-### Local Pivot - Example
+###### Local Pivot - Example
+
+
 
 * Start chisel server on port 8000 (attacker system is server).
 
