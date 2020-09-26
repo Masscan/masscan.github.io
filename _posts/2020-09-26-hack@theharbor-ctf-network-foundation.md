@@ -30,7 +30,8 @@ There is only few packets in the file and i found a packet with GET request to /
 
 Just select that packet and press **Ctrl+Alt+Shift+H** to follow HTTP Stream and you will get your flag.
 
-**Flag  : flag_{52877e8b1d224623957e36051d6a8e05}**
+Flag  : flag_{52877e8b1d224623957e36051d6a8e05}
+
 
 ### 2 - helpfulwine
 
@@ -38,7 +39,8 @@ Like previous one, it was also a pcap file with few packet data in it. Opened th
 
 Select the first packet and press **Ctrl+Alt+Shift+T** to follow tcp Stream and you will get the flag.
 
-**Flag : flag_{7ab84f7168c2461e814e7e5eb1bb56a0}**
+Flag : flag_{7ab84f7168c2461e814e7e5eb1bb56a0}
+
 
 ### 3 - rhetoricalairplane
 
@@ -46,7 +48,8 @@ Lets analyse the downloaded file using wireshark and it was soo easy. There is o
 
 You got the flag.
 
-**Flag : flag_{69791495c5334cf0a6dfe60eaf37769f}**
+Flag : flag_{69791495c5334cf0a6dfe60eaf37769f}
+
 
 ### 4 - lemonswitch 
 
