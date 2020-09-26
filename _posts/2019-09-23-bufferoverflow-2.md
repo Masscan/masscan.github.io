@@ -15,7 +15,7 @@ This is a writeup on how i solved **BufferOverflow #2** from NACTF. I hope this 
 
 Download the binary to our system, make it executable and run the binary.
 
-Like the previous challeneg, this binary is also just printing the input back to us, behaving like a echo program.
+Like the previous challenge, this binary is also just printing the input back to us, behaving like a echo program.
 
 ![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/bo2.2.png)
 
