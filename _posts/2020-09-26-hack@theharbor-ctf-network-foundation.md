@@ -52,7 +52,7 @@ You got the flag.
 
 Unlike other challenges this was an interesting challenge.
 
-Challenge description is give below.
+Challenge description is given below.
 
 ![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/lemon1.png)
 
@@ -66,31 +66,31 @@ So we have to analyse the SSH auth log file and we have to find the malicious be
 
 We have to find malicious user's ip address, number of successful password login attempts made by adversary, number of successful public key authentication, and finally number of failed login attempts made by adversary.
 
-Lets start our analysing..
+Lets start our analysis..
 
 After a lot of analysing i concluded by the below method.
 
 I first selected all failed login attempts for all users and also collected IP addresses from which failed login originated.
 
 ~~~
-cat 0228a4fb0b05408ad4e1a32ea2137ca8 | grep -i "faile" | cut -d" " -f9,11 | sort | uniq -c
+cat 0228a4fb0b05408ad4e1a32ea2137ca8 | grep -i "failed" | cut -d" " -f9,11 | sort | uniq -c
 ~~~
 
 Output : 
 
 ![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/lemon3.png)
 
-Total failed attempts :
+I concluded that a lot of failed login attempts are originated from **10.133.155.151** for **diffrent users**.
+
+Total failed attempts made by 10.133.155.151:
 
 ![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/lemon4.png)
-
-I concluded that a lot of failed login attempts are originated from **10.133.155.151** for diffrent users.
 
 Next i have to find how many successful attempts he made to access the server with both password auth and public key auth.
 
 Luckily he is not successful with his password guessing.
 
-![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/lemon4.png)
+![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/lemon5.png)
 
 So
 
@@ -101,7 +101,8 @@ So
 
 Submitted all these details on the web panel, we will get flag only if details are correct.
 
-100% our analysis were correct and we got teh flag.
+100% our analysis were correct and we got the flag.
 
 ![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/lemon6.png)
 
+Thanks.
