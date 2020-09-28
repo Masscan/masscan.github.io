@@ -7,7 +7,7 @@ subtitle: Infosec enthusiast
 - Security Analyst @ [Bluecast](https://bluecast.tech/)
 - OSCP Certified
 - Synack Red Team Member
-- ![test](https://images.pexels.com/photos/736230/pexels-photo-736230.jpeg)
+- !(https://images.pexels.com/photos/736230/pexels-photo-736230.jpeg)
 - [ ![maSScan](https://www.hackthebox.eu/badge/image/94996)](https://www.hackthebox.eu/home/users/profile/94996)
 
 
