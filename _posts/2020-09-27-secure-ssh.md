@@ -15,6 +15,11 @@ Here i will discuss some methods that you can do for SSH security.
 
 **NB: after every changes made to sshd config file, you need to issue a restart of sshd service**
 
+To do a restrat of ssh service.
+
+~~~
+sudo systemctl restart sshd
+~~~
 
 ### 1 - Change default port
 
@@ -24,17 +29,30 @@ To change the SSH port, edit the file **"/etc/ssh/sshd_config"**.
 
 If the below line is commented, first uncomment that.
 
-{: .box-note}
-#Port 22 \n
-
+~~~
+#Port 22
 Port 4444
+~~~
 
 Changed to port 4444 from port 22.
 
-
 ### 2 - Disable password based authentication
 
- 
+Good passwords are little hard to remember, so lazy users will come up with easy and bad passwords. There is also chance to use a password more that one place, this increase the risk. Public key based authentication is much better than password based auth.
+
+To disable password based authentication edit the file **"/etc/ssh/sshd_config"**. 
+
+~~~
+#PasswordAuthentication yes
+PasswordAuthentication no
+~~~
+if you need password based auth change the value **no** to **yes** and use tool **fail2ban** to protect SSH server from bruteforce attacks.
+
+Before doing this don't forget to enable public key based authentication.
+
+### 3 - Use SSH public key authentication
+
+Passwords are not well perfect. 
 
 
 
