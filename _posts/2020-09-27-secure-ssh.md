@@ -86,8 +86,40 @@ Before doing this don't forget to enable public key based authentication.
 
 ### 4 - Disable root login
 
+Another best practice is to disallow login attempts from root users. It is a best idea to create a user and add that user to **sudo** (previleged group) group.
+This will help us to improve security because it will be hard to guess the username for SSH access. Attackers can't be successfull with bruteforcing cause most of the attacks will be against root user but we blocked root user from ssh.
 
+To disable root login edit the file **"/etc/ssh/sshd_config"**. 
 
+~~~
+PermitRootLogin prohibit-password
+OR
+PermitRootLogin no
+~~~
+* prohibit-password - this will allow root user to log in to ssh only through ssh keys.
 
+### 5 - Block unwanted connections
 
+Using **TCP wrappers** we can filter out unwanted connections to our ssh server. TCP wrappers uses **hosts.deny**, **hosts.allow**. This service is mostly installed by default, if not installed you can install.
 
+When a connection coming to our server, the server checks these two files.
+
+To allow ssh only from 192.168.x.x do the following steps mentioned below.
+
+* edit the **/etc/hosts.deny** file and add the below line at the end
+~~~
+sshd: ALL
+~~~
+* this will block all ssh connections.
+
+* after that edit the **/etc/hosts.allow** file and add the below line at the end
+~~~
+sshd : 192.168.x.x,LOCAL
+~~~
+* this will allow ssh connections from 192.168.x.x and localhost.
+
+Now only the specified clients can do a SSH and all other connections will be dropped.
+
+These are the some best practices with SSH. There are many more to do like disable empty password login, set a idle timeout value, disable forawarding etc.
+
+I hope this will help.
