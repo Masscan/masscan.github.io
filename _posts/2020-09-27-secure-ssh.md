@@ -50,8 +50,6 @@ To use Public Key authentication follow the below steps.
  
  Don't leave passphrase empty, give a super password.
 
-![crepe]()
-
 * Next step is to move the public key to the server, for that use **ssh-copy-id** or you can do that manually.
 
 ~~~
@@ -116,7 +114,7 @@ sshd: ALL
 ~~~
 sshd : 192.168.x.x,LOCAL
 ~~~
-* this will allow ssh connections from 192.168.x.x and localhost.
+* this will allow ssh connections only from 192.168.x.x and localhost.
 
 Now only the specified clients can do a SSH and all other connections will be dropped.
 
