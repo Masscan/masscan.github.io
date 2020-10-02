@@ -13,14 +13,19 @@ In default an SSH server will listen for incoming connections on port 22(TCP).
 
 Here i will discuss some methods that you can do for SSH security.
 
+**NB: after every changes made to sshd config file, you need to issue a restart of sshd service**
+
 
 ### 1 - Change default port
 
 Changing your default SSH port will help against some automated attacks from bots and script kiddies.
 
-To change the SSH port, edit the file **/etc/ssh/sshd_config**. if it is commented, first uncomment that.
+To change the SSH port, edit the file **"/etc/ssh/sshd_config"**. 
+
+If the below line is commented, first uncomment that.
 
 {: .box-note}
+#Port 22
 Port 4444
 
 Changed to port 4444 from port 22.
