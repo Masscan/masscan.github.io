@@ -36,7 +36,40 @@ Port 4444
 
 Changed to port 4444 from port 22.
 
-### 2 - Disable password based authentication
+### 2 - Use SSH public key authentication
+
+Passwords are not well perfect. Public Key authentication is a way to logging to your SSH server using keys. This eliminates the need of sharing passwords between users. This has a lot of advantages. For example if an attacker got the public key and also got the password, still he can't gain access to the server without private key.
+
+To use Public Key authentication follow the below steps.
+
+ * Generate a SSH key pair. To do this issue the below command on your PC.
+ 
+ ~~~
+ ssh-keygen
+ ~~~
+ 
+ Don't leave passphrase empty, give a super password.
+
+![crepe]()
+
+* Next step is to move the public key to the server, for that use **ssh-copy-id** or you can do that manually.
+
+~~~
+ssh-copy-id -i '/home/masscan/.ssh/id_rsa.pub' root@135.181.XX.XX
+~~~
+
+If you are doing manually, just copy the content from file **id_rsa.pub** and put that inside server's **~/.ssh/authorized_keys**.
+
+Now you can ssh into your server without password.
+
+~~~
+ssh root@135.181.XX.XX
+or
+ssh -i </path/to/privatekey> root@135.181.XX.XX
+~~~
+
+
+### 3 - Disable password based authentication
 
 Good passwords are little hard to remember, so lazy users will come up with easy and bad passwords. There is also chance to use a password more that one place, this increase the risk. Public key based authentication is much better than password based auth.
 
@@ -50,11 +83,8 @@ if you need password based auth change the value **no** to **yes** and use tool 
 
 Before doing this don't forget to enable public key based authentication.
 
-### 3 - Use SSH public key authentication
 
-Passwords are not well perfect. 
-
-
+### 4 - Disable root login
 
 
 
