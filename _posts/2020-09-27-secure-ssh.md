@@ -15,7 +15,7 @@ Here i will discuss some methods that you can do for SSH security.
 
 **NB: after every changes made to sshd config file, you need to issue a restart of sshd service**
 
-To do a restrat of ssh service.
+To restart ssh service, execute the below command.
 
 ~~~
 sudo systemctl restart sshd
