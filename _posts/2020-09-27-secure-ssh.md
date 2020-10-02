@@ -21,6 +21,7 @@ To do a restrat of ssh service.
 sudo systemctl restart sshd
 ~~~
 
+
 ### 1 - Change default port
 
 Changing your default SSH port will help against some automated attacks from bots and script kiddies.
@@ -36,13 +37,14 @@ Port 4444
 
 Changed to port 4444 from port 22.
 
+
 ### 2 - Use SSH public key authentication
 
 Passwords are not well perfect. Public Key authentication is a way to logging to your SSH server using keys. This eliminates the need of sharing passwords between users. This has a lot of advantages. For example if an attacker got the public key and also got the password, still he can't gain access to the server without private key.
 
 To use Public Key authentication follow the below steps.
 
- * Generate a SSH key pair. To do this issue the below command on your PC.
+ * Generate a SSH key pair. To do this, issue the below command on your PC.
  
  ~~~
  ssh-keygen
@@ -69,15 +71,15 @@ ssh -i </path/to/privatekey> root@135.181.XX.XX
 
 ### 3 - Disable password based authentication
 
-Good passwords are little hard to remember, so lazy users will come up with easy and bad passwords. There is also chance to use a password more that one place, this increase the risk. Public key based authentication is much better than password based auth.
+Strong passwords are little hard to remember. Normally users will come up with easy and guessable passwords. There is also a chance to use a password more than one place or platform, this increases the risk. Public key based authentication is much better than password based auth.
 
-To disable password based authentication edit the file **"/etc/ssh/sshd_config"**. 
+To disable password based authentication, edit the file **"/etc/ssh/sshd_config"**. 
 
 ~~~
 #PasswordAuthentication yes
 PasswordAuthentication no
 ~~~
-if you need password based auth change the value **no** to **yes** and use tool **fail2ban** to protect SSH server from bruteforce attacks.
+if you need password based auth, change the value **no** to **yes** and use tool **fail2ban** to protect SSH server from bruteforce attacks.
 
 Before doing this don't forget to enable public key based authentication.
 
@@ -95,6 +97,7 @@ OR
 PermitRootLogin no
 ~~~
 * **prohibit-password** - this will allow root user to log in to ssh only through ssh keys.
+
 
 ### 5 - Block unwanted connections
 
