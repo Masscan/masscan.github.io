@@ -104,16 +104,20 @@ When a connection coming to our server, the server checks these two files.
 
 To allow ssh only from 192.168.x.x do the following steps mentioned below.
 
-* Edit the **/etc/hosts.deny** file and add the below line at the end
+* Edit the **/etc/hosts.deny** file and add the below line at the end.
+
 ~~~
 sshd: ALL
 ~~~
+
 * This will block all ssh connections.
 
-* After that edit the **/etc/hosts.allow** file and add the below line at the end
+* After that edit the **/etc/hosts.allow** file and add the below line at the end.
+
 ~~~
 sshd : 192.168.x.x,LOCAL
 ~~~
+
 * This will allow ssh connections only from 192.168.x.x and localhost.
 
 Now only the specified clients can do a SSH and all other connections will be dropped.
