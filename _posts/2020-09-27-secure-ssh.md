@@ -25,7 +25,8 @@ To change the SSH port, edit the file **"/etc/ssh/sshd_config"**.
 If the below line is commented, first uncomment that.
 
 {: .box-note}
-#Port 22
+#Port 22 \n
+
 Port 4444
 
 Changed to port 4444 from port 22.
