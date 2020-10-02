@@ -7,7 +7,7 @@ comments: true
 
 **Secure Shell** (SSH) is a network protocol for operating network services securely over an unsecured network. 
 
-SSH is typically used to log into a remote machine and execute commands, but it also supports tunneling, forwarding TCP ports, and X11 connection.
+SSH is typically used to login into a remote machine and execute commands, but it also supports tunneling, forwarding TCP ports, and X11 connection.
 
 In default, an SSH server will listen for incoming connections on port 22(TCP).
 
@@ -40,7 +40,7 @@ Changed to port 4444 from port 22.
 
 ### 2 - Use SSH public key authentication
 
-Passwords are not well perfect. Public Key authentication is a way to logging to your SSH server using keys. This eliminates the need of sharing passwords between users. This has a lot of advantages. For example, if an attacker got the public key and also got the password, still he can't gain access to the server without a private key.
+Passwords are not well perfect. Public Key authentication is a way to login to your SSH server using keys. This eliminates the need of sharing passwords between users. This has a lot of advantages. For example, if an attacker got the public key and also got the password, still he can't gain access to the server without a private key.
 
 To use Public Key authentication follow the below steps.
 
@@ -79,6 +79,7 @@ To disable password based authentication, edit the file **"/etc/ssh/sshd_config"
 #PasswordAuthentication yes
 PasswordAuthentication no
 ~~~
+
 if you need password-based auth, change the value **no** to **yes** and use tool **fail2ban** to protect the SSH server from brute force attacks.
 
 Before doing this don't forget to enable public key-based authentication.
@@ -86,10 +87,10 @@ Before doing this don't forget to enable public key-based authentication.
 
 ### 4 - Disable root login
 
-Another best practice is to disallow login attempts from root users. It is the best idea to create a user and add that user to **sudo** (privileged group) group.
-This will help us to improve security because it will be hard to guess the username for SSH access. Attackers can't be successful with brute-forcing cause most of the attacks will be against the root user but we blocked the root user from ssh.
+Another best practice is to disallow login attempts from **root** user. It is the best idea to create a user and add that user to **sudo** (privileged group) group.
+This will help us to improve security, because it will be hard to guess the username for SSH access. Attackers can't be successful with brute-forcing cause most of the attacks will be against the root user, but we blocked the root user from accessing the ssh service.
 
-To disable root login edit the file **"/etc/ssh/sshd_config"**. 
+To disable root login, edit the file **"/etc/ssh/sshd_config"**. 
 
 ~~~
 PermitRootLogin prohibit-password
@@ -126,6 +127,6 @@ sshd : 192.168.x.x,LOCAL
 
 Now only the specified clients can do an SSH and all other connections will be dropped.
 
-These are the some best practices with SSH. There are many more to do like disable empty password login, set an idle timeout value, disable forwarding, etc.
+These are some of the best practices that you can do with SSH. There are many more to do like disable empty password login, set an idle timeout value, disable forwarding, etc.
 
 I hope this will help.
