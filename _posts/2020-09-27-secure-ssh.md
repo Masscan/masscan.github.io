@@ -64,7 +64,7 @@ Now you can ssh into your server without password.
 
 ~~~
 ssh root@135.181.XX.XX
-or
+OR
 ssh -i </path/to/privatekey> root@135.181.XX.XX
 ~~~
 
