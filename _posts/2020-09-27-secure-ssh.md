@@ -94,7 +94,7 @@ PermitRootLogin prohibit-password
 OR
 PermitRootLogin no
 ~~~
-* prohibit-password - this will allow root user to log in to ssh only through ssh keys.
+* **prohibit-password** - this will allow root user to log in to ssh only through ssh keys.
 
 ### 5 - Block unwanted connections
 
@@ -104,17 +104,17 @@ When a connection coming to our server, the server checks these two files.
 
 To allow ssh only from 192.168.x.x do the following steps mentioned below.
 
-* edit the **/etc/hosts.deny** file and add the below line at the end
+* Edit the **/etc/hosts.deny** file and add the below line at the end
 ~~~
 sshd: ALL
 ~~~
-* this will block all ssh connections.
+* This will block all ssh connections.
 
-* after that edit the **/etc/hosts.allow** file and add the below line at the end
+* After that edit the **/etc/hosts.allow** file and add the below line at the end
 ~~~
 sshd : 192.168.x.x,LOCAL
 ~~~
-* this will allow ssh connections only from 192.168.x.x and localhost.
+* This will allow ssh connections only from 192.168.x.x and localhost.
 
 Now only the specified clients can do a SSH and all other connections will be dropped.
 
