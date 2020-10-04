@@ -58,7 +58,7 @@ To use Public Key authentication follow the below steps.
 ssh-copy-id -i '/home/masscan/.ssh/id_rsa.pub' root@135.181.XX.XX
 ~~~
 
-If you are doing manually, just copy the content from file **id_rsa.pub** and paste that inside server **~/.ssh/authorized_keys**.
+If you are doing manually, just copy the content from file **id_rsa.pub** and paste that inside server **"~/.ssh/authorized_keys"**.
 
 Now you can ssh into your server without a password.
 
