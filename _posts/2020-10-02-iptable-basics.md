@@ -39,7 +39,7 @@ FORWARD - For packets routed through the server.
 OUTPUT  - For controlling locally generated packets before routing.
 ~~~
 
-#### 1 - Installing Iptables
+### 1 - Install and Setup Iptables
 
 To install Iptables run the below command on the terminal.
 
@@ -59,9 +59,57 @@ sudo iptables -L -v --line-number
 
 This command will list all rules from **filter table** (default table). 
 
-* **-L** is to list all the rules(from all the chains).
+* **-L** is to list all the rules (from all the chains).
 
 * **-v** is to enable verbose mode.
 
 * **--line-number** is to list rules with line number.
+
+As you can see that all chain policy are set to **ACCEPT** and no rules specified, which is not secure, because there is no packet filtering.
+
+You can change the default policy to **DROP** to drop all the packets and you can specify rules to allow connection from the source you wish.
+
+For example you have a server with some highly sensitive information and you want to connect to that server from only your ip address then you have to do the following,
+
+* Install Iptables and change default policy of all chains to DROP.
+
+~~~
+iptables -P INPUT DROP
+
+iptables -P OUTPUT DROP
+
+iptables -P FORWARD DROP
+~~~
+
+* Next, to allow traffic from only your ip address (xx.xx.xx.xx), do the following.
+
+~~~
+iptables -A INPUT -p tcp -s xx.xx.xx.xx -j ACCEPT
+
+iptables -A OUTPUT -p tcp -d xx.xx.xx.xx -j ACCEPT
+~~~
+
+All done, now only you can connect to your server. This is very much helpful for a server which contains highly confidential data.
+
+### 2 - Managing Rules
+
+To manage rules to a chain you have to know some options of iptables.
+
+* **-A** - Append rules to chain.
+
+* **-D** - Delete matching rule from chain.
+
+* **-F** - Delete all rules.
+
+* **-i** - Network interface name.
+
+* **-p** - Specify protocol.
+
+* **-s** - Specify source.
+
+* **-d** - Destination specification.
+
+* **--dport** - Specify the port.
+
+* **-j** - Target for the rule.
 
