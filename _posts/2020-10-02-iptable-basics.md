@@ -20,7 +20,7 @@ Following are the possible special values that you can specify in the target.
 ~~~
 ACCEPT – Let the packet to pass through.
 
-DROP   – Drop the packet.
+DROP   – Drop the packet. This is best if you don't want the source to realize your system exists.
 
 RETURN – Stop traversing this chain  and  resume  at the  next rule in the previous (calling) chain.
 ~~~
