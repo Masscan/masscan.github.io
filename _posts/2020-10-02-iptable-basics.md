@@ -115,4 +115,27 @@ To manage rules to a chain you have to know some options of iptables.
 
 To understand clearly i will put some examples.
 
+#### 1 - Block an IP address.
 
+~~~
+iptables -A INPUT -s XX.XX.XX.XX -j DROP
+~~~
+
+#### 2 - Allow all SSH connection
+
+~~~
+iptables -A INPUT -i eth0 -p tcp --dport 22 -j ACCEPT
+
+iptables -A OUTPUT -o eth0 -p tcp --sport 22 -j ACCEPT
+~~~
+
+### 3 - Allow MySql from specif IP address.
+
+~~~
+iptables -A INPUT -p tcp -s XX.XX.XX.XX --dport 3306 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 3306 -j ACCEPT
+~~~
+
+There are a lot of things that you can do with iptables.
+
+Have a good day!.
