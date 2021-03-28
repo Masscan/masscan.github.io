@@ -83,7 +83,9 @@ So i changed the function now this function will return false (0x0) everytime.
 
 Lets rebuild the application , sign and check the bypass is working or not.
 
-![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/ard11.png)
+~~~
+apktoob b Application -o Application-new.apk
+~~~
 
 ![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/ard12.png)
 
