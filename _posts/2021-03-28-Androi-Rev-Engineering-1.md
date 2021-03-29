@@ -72,13 +72,13 @@ But nothing was there. After that i used **jadx** to reverse enginner the applic
 
 ![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/are6.png)
 
-As you can see the application creates 2 file "secret_user.pwd" and "secret_pass.pwd" on starting and that two files contains username and password.
+As you can see the application creates 2 files "secret_user.pwd" and "secret_pass.pwd" on starting, and that two files contain username and password.
 
-Now checking login function we can see that the entered username and password is checked against content on that two files.
+Now checking login function we can see that the entered username and password is checked against the content of that two files.
 
 ![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/are7.png)
 
-So this time the application stores the criticl data in local file system.
+So this time the application stores the critical data in local file system.
 
 ![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/are8.png)
 
