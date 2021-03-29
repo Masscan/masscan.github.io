@@ -54,7 +54,6 @@ Note : **strings.xml file is an important file. most of the time some important 
 * Application 2 : Backdoor2.apk
 
 Installed the second application on emulator and it was similar to first challenge. After opening the application there is a login activity which asks for username 
-
 and password. We have to find that.
 
 ![Crepe](https://raw.githubusercontent.com/Masscan/masscan.github.io/master/assets/img/are4.png)
